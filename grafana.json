@@ -1,0 +1,55 @@
+{
+  "jpsType": "install",
+  "jpsVersion": "0.99",
+  "application": {
+    "id": "grafanabeta",
+    "name": "Grafana - beta",
+    "homepage": "http://grafana.org/",
+    "version": "latest",
+    "logo": "http://grafana.org/assets/img/logo_new_transparent_200x48.png",
+    "description": {
+      "text": "Grafana is most commonly used for visualizing time series data for Internet infrastructure and application analytics but many use it in other domains including industrial sensors, home automation, weather, and process control."
+    },
+    "env": {
+      "topology": {
+        "nodes": [
+          {
+            "nodeType": "docker",
+            "fixedCloudlets": 1,
+            "flexibleCloudlets": 16,
+            "displayName": "Grafana-app",
+            "nodeGroup": "cp",
+            "docker": {
+              "image": "grafana/grafana:latest",
+              "env": {
+                  "DOCKER_EXPOSED_PORT": "3000",
+                  "GF_SECURITY_ADMIN_PASSWORD": "${globals.password}",
+                  "GF_SERVER_ROOT_URL": "${env.url}",
+                  "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+              }
+            }
+          }
+        ],
+        "ssl": true
+      }
+    },
+    "onInstall": [{
+      "executeScript": {
+        "type": "js",
+        "script": "https://owncloud.sylvesteri.fi/owncloud/index.php/s/tlux6X89Dzyj9X3/download",
+        "params": {
+          "nodeGroup": "cp",
+          "name": "grafanaport",
+          "port": "3000"
+        }
+      }
+    }],
+    "success": {
+      "text": "user: admin</br>user password: ${user.appPassword}",
+      "email": "user: admin</br>user password: ${user.appPassword}"
+    },
+	"globals": {
+      "password": "${user.appPassword}"
+    }
+  }
+}
