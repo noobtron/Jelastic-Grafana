@@ -24,7 +24,7 @@
               "env": {
                   "DOCKER_EXPOSED_PORT": "3000",
                   "GF_SECURITY_ADMIN_PASSWORD": "${globals.password}",
-                  "GF_SERVER_ROOT_URL": "${env.url}",
+                  "GF_SERVER_ROOT_URL": "${globals.url}",
                   "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
               }
             }
@@ -45,11 +45,12 @@
       }
     }],
     "success": {
-      "text": "user: admin</br>user password: ${user.appPassword}",
-      "email": "user: admin</br>user password: ${user.appPassword}"
+      "text": "Grafana url: ${env.url}<br>user: admin<br>user password: ${user.appPassword}",
+      "email": "Grafana url: ${env.url}<br>user: admin<br>user password: ${user.appPassword}"
     },
 	"globals": {
-      "password": "${user.appPassword}"
+      "password": "${user.appPassword}",
+      "url": "${env.url}"
     }
   }
 }
