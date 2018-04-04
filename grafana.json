@@ -36,7 +36,7 @@
     "onInstall": [{
       "executeScript": {
         "type": "js",
-        "script": "https://owncloud.sylvesteri.fi/owncloud/index.php/s/tlux6X89Dzyj9X3/download",
+        "script": "https://raw.githubusercontent.com/noobtron/Jelastic-Grafana/master/scripts/addEndPoints.js",
         "params": {
           "nodeGroup": "cp",
           "name": "grafanaport",
